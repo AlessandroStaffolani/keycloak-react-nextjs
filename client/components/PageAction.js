@@ -24,6 +24,7 @@ export default function PageAction({ resource, action }) {
       setSuccess(false);
       setMessage(error.toString());
       setTitle("Error");
+      setShow(true)
     }
   };
 
@@ -46,7 +47,7 @@ export default function PageAction({ resource, action }) {
             <p>
               {message}
               <br />
-              Visibility: {visibility}
+              {visibility ? (`Visibility: ${visibility}`) : null}
             </p>
           </Message>
         ) : null}

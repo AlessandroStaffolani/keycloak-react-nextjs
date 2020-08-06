@@ -3,8 +3,6 @@ const express = require("express");
 
 const router = express.Router();
 
-router.use(bodyParser.json());
-
 router.get('/primary', (req, res, next) => {
   res.json({
     title: 'Primary action',
