@@ -1,0 +1,8 @@
+{
+  "realm": "poc",
+  "auth-server-url": "http://localhost:3000/",
+  "ssl-required": "external",
+  "resource": "poc-client",
+  "public-client": true,
+  "confidential-port": 0
+}

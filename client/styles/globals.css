@@ -1,0 +1,56 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page {
+
+}
+
+
+.navbar {
+  max-height: 75px;
+}
+
+.navbar .logo {
+  vertical-align: middle;
+  width: 180px;
+}
+
+.navbar .navigation {
+
+}
+
+.page > .content {
+  margin-top: 100px;
+  min-height: calc(100vh - 260px);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.footer {
+  padding: 20px 50px;
+  height: 90px;
+}
