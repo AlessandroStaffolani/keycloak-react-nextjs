@@ -16,15 +16,7 @@ export default function User() {
           magna id sapien. Cras eu hendrerit turpis, sed molestie lacus. Nunc
           accumsan nunc sit amet efficitur auctor.
         </p>
-        <div className="text-right">
-          <PageAction
-            color={"green"}
-            title={"Primary user action"}
-            message={
-              "Primary user action has been clicked without authorization"
-            }
-          />
-        </div>
+        <PageAction resource={'user'} action={'primary'} />
         <Divider section />
         <Header as="h3">Secondary user action</Header>
         <p>
@@ -38,15 +30,7 @@ export default function User() {
           quis, rutrum eu nulla. Maecenas porta dui in venenatis luctus. Etiam
           tempor euismod viverra.
         </p>
-        <div className="text-right">
-          <PageAction
-            color={"blue"}
-            title={"Secondary user action"}
-            message={
-              "Secondary user action has been clicked without authorization"
-            }
-          />
-        </div>
+        <PageAction resource={'user'} action={'secondary'} />
       </Segment>
     </Layout>
   );

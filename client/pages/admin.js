@@ -16,15 +16,7 @@ export default function Admin() {
           magna id sapien. Cras eu hendrerit turpis, sed molestie lacus. Nunc
           accumsan nunc sit amet efficitur auctor.
         </p>
-        <div className="text-right">
-          <PageAction
-            color={"green"}
-            title={"Primary admin action"}
-            message={
-              "Primary admin action has been clicked without authorization"
-            }
-          />
-        </div>
+        <PageAction resource={'admin'} action={'primary'} />
         <Divider section />
         <Header as="h3">Secondary admin action</Header>
         <p>
@@ -38,15 +30,7 @@ export default function Admin() {
           quis, rutrum eu nulla. Maecenas porta dui in venenatis luctus. Etiam
           tempor euismod viverra.
         </p>
-        <div className="text-right">
-          <PageAction
-            color={"blue"}
-            title={"Secondary public action"}
-            message={
-              "Secondary admin action has been clicked without authorization"
-            }
-          />
-        </div>
+        <PageAction resource={'admin'} action={'secondary'} />
       </Segment>
     </Layout>
   );

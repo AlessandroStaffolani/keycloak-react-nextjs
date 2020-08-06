@@ -16,15 +16,7 @@ export default function Public() {
           magna id sapien. Cras eu hendrerit turpis, sed molestie lacus. Nunc
           accumsan nunc sit amet efficitur auctor.
         </p>
-        <div className="text-right">
-          <PageAction
-            color={"green"}
-            title={"Primary public action"}
-            message={
-              "Primary public action has been clicked without authorization"
-            }
-          />
-        </div>
+        <PageAction resource={'public'} action={'primary'} />
         <Divider section />
         <Header as="h3">Secondary public action</Header>
         <p>
@@ -38,15 +30,7 @@ export default function Public() {
           quis, rutrum eu nulla. Maecenas porta dui in venenatis luctus. Etiam
           tempor euismod viverra.
         </p>
-        <div className="text-right">
-          <PageAction
-            color={"blue"}
-            title={"Secondary public action"}
-            message={
-              "Secondary public action has been clicked without authorization"
-            }
-          />
-        </div>
+        <PageAction resource={'public'} action={'secondary'} />
       </Segment>
     </Layout>
   );
