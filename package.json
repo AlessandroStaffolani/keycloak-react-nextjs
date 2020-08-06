@@ -1,11 +1,11 @@
 {
-  "name": "frontend",
+  "name": "keycloak-poc",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server/server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server/server.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
