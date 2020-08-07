@@ -1,11 +1,13 @@
-import Layout from "../components/Layout";
+import { useEffect } from "react";
 import { Header, Segment, Divider } from "semantic-ui-react";
 import PageAction from "../components/PageAction";
 
-export default function Public() {
-  const title = "Public";
+export default function Public({ setPageTitle }) {
+  useEffect(() => {
+    setPageTitle("Public");
+  }, []);
   return (
-    <Layout title={title}>
+    <div>
       <Header as="h1">Public page</Header>
       <Segment>
         <Header as="h3">Primary public action</Header>
@@ -16,7 +18,7 @@ export default function Public() {
           magna id sapien. Cras eu hendrerit turpis, sed molestie lacus. Nunc
           accumsan nunc sit amet efficitur auctor.
         </p>
-        <PageAction resource={'public'} action={'primary'} />
+        <PageAction resource={"public"} action={"primary"} />
         <Divider section />
         <Header as="h3">Secondary public action</Header>
         <p>
@@ -30,8 +32,8 @@ export default function Public() {
           quis, rutrum eu nulla. Maecenas porta dui in venenatis luctus. Etiam
           tempor euismod viverra.
         </p>
-        <PageAction resource={'public'} action={'secondary'} />
+        <PageAction resource={"public"} action={"secondary"} />
       </Segment>
-    </Layout>
+    </div>
   );
 }

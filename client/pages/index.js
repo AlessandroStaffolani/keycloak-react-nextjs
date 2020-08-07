@@ -1,11 +1,15 @@
-import Layout from "../components/Layout";
+import {useEffect} from 'react'
 import { Header, List } from "semantic-ui-react";
 import Link from "next/link";
 
-export default function Home() {
-  const title = "Home";
+export default function Home({setPageTitle}) {
+
+  useEffect(() => {
+    setPageTitle('Home')
+  }, [])
+
   return (
-    <Layout title={title}>
+    <div>
       <Header as="h1">Home page</Header>
       <p>
         Sample web application which shows how to manage different levels of
@@ -55,6 +59,6 @@ export default function Home() {
           </List.Description>
         </List.Item>
       </List>
-    </Layout>
+    </div>
   );
 }

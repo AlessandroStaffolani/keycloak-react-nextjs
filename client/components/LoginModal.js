@@ -89,7 +89,6 @@ export default function LoginModal({ isOpen, setIsOpen }) {
                 />
               }
               error={passwordError}
-              iconPosition="right"
               placeholder="Password"
               type={passwordFieldType}
               value={password}

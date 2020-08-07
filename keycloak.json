@@ -1,8 +1,10 @@
 {
   "realm": "keycloak-poc",
-  "bearer-only": true,
   "auth-server-url": "http://localhost:8080/auth/",
   "ssl-required": "external",
   "resource": "poc-client",
+  "credentials": {
+    "secret": "526b3a6b-f528-4c45-a3b8-964dda114bcb"
+  },
   "confidential-port": 0
 }

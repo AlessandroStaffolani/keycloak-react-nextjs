@@ -1,11 +1,13 @@
-import Layout from "../components/Layout";
+import {useEffect} from 'react'
 import { Header, Segment, Divider } from "semantic-ui-react";
 import PageAction from "../components/PageAction";
 
-export default function User() {
-  const title = "User";
+export default function User({setPageTitle}) {
+  useEffect(() => {
+    setPageTitle("User");
+  }, [])
   return (
-    <Layout title={title}>
+    <div>
       <Header as="h1">User page</Header>
       <Segment>
         <Header as="h3">Primary user action</Header>
@@ -32,6 +34,6 @@ export default function User() {
         </p>
         <PageAction resource={'user'} action={'secondary'} />
       </Segment>
-    </Layout>
+    </div>
   );
 }

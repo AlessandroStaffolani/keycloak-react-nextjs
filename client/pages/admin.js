@@ -1,11 +1,13 @@
-import Layout from "../components/Layout";
+import {useEffect} from 'react'
 import { Header, Segment, Divider } from "semantic-ui-react";
 import PageAction from "../components/PageAction";
 
-export default function Admin() {
-  const title = "Admin";
+export default function Admin({setPageTitle}) {
+  useEffect(() => {
+    setPageTitle('Admin')
+  }, [])
   return (
-    <Layout title={title}>
+    <div>
       <Header as="h1">Admin page</Header>
       <Segment>
         <Header as="h3">Primary admin action</Header>
@@ -32,6 +34,6 @@ export default function Admin() {
         </p>
         <PageAction resource={'admin'} action={'secondary'} />
       </Segment>
-    </Layout>
+    </div>
   );
 }

@@ -31,7 +31,7 @@ export default function PageAction({ resource, action }) {
   return (
     <div>
       <div className="text-right">
-        <Button color={action} onClick={handleClick}>
+        <Button color={action === 'primary' ? 'blue' : 'black'} onClick={handleClick}>
           Execute {action} action
         </Button>
       </div>

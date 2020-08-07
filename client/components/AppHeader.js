@@ -1,18 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React  from "react";
 import { Menu } from "semantic-ui-react";
 import Link from "next/link";
 import { Header } from "semantic-ui-react";
-import { useRouter } from "next/router";
 
-function AppHeader({ setIsLoginModalOpen }) {
-  const [activePage, setActivePage] = useState("home");
-  const router = useRouter();
-
-  useEffect(() => {
-    let currentPath = router.route;
-    currentPath = currentPath.split("/")[1];
-    setActivePage(currentPath);
-  }, []);
+function AppHeader({ setIsLoginModalOpen, activePage }) {
 
   return (
     <nav className="header">
@@ -27,22 +18,22 @@ function AppHeader({ setIsLoginModalOpen }) {
         <Menu.Menu className="navigation">
           <Menu.Item name="home" active={activePage === ""}>
             <Link href="/">
-              <Header as="h4">Home</Header>
+              <h4>Home</h4>
             </Link>
           </Menu.Item>
           <Menu.Item name="public" active={activePage === "public"}>
             <Link href="/public">
-              <Header as="h4">Public</Header>
+              <h4>Public</h4>
             </Link>
           </Menu.Item>
           <Menu.Item name="user" active={activePage === "user"}>
             <Link href="/user">
-              <Header as="h4">User</Header>
+              <h4>User</h4>
             </Link>
           </Menu.Item>
           <Menu.Item name="admin" active={activePage === "admin"}>
             <Link href="/admin">
-              <Header as="h4">Admin</Header>
+              <h4>Admin</h4>
             </Link>
           </Menu.Item>
         </Menu.Menu>
