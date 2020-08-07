@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Modal, Button, Divider, Form, Icon } from "semantic-ui-react";
-import {get_access_token} from "../lib/authorize";
+import { Modal, Button, Divider, Form, Icon, Message } from "semantic-ui-react";
+import useAuth from "../lib/auth";
 
 export default function LoginModal({ isOpen, setIsOpen }) {
   const [username, setUsername] = useState("");
@@ -9,6 +9,8 @@ export default function LoginModal({ isOpen, setIsOpen }) {
   const [passwordFieldIcon, setPasswordFieldIcon] = useState("eye");
   const [usernameError, setUsernameError] = useState(null)
   const [passwordError, setPasswordError] = useState(null)
+  const [loginMessage, setLoginMessage] = useState(null)
+  const {login} = useAuth();
 
   const handlePasswordFieldTypeChange = () => {
     const type = passwordFieldType === "password" ? "text" : "password";
@@ -17,7 +19,7 @@ export default function LoginModal({ isOpen, setIsOpen }) {
     setPasswordFieldIcon(icon);
   };
 
-  const handleLoginClick = () => {
+  const handleLoginClick = async () => {
     let isValid = true
     if (username === '') {
       isValid = false
@@ -29,13 +31,12 @@ export default function LoginModal({ isOpen, setIsOpen }) {
     }
     if (isValid) {
       // call the login method
-      setIsOpen(false)
-      handleOnClose()
-      const token = get_access_token(username, password)
-      if (token !== null) {
-        // logged
+      const response = await login(username, password)
+      if (response.result) {
+        setIsOpen(false)
+        handleOnClose()
       } else {
-        // error message
+        setLoginMessage('Invalid credentials')
       }
     }
   }
@@ -59,6 +60,7 @@ export default function LoginModal({ isOpen, setIsOpen }) {
     setUsernameError(null)
     setPasswordError(null)
     setIsOpen(false)
+    setLoginMessage(null)
   }
 
   return (
@@ -72,6 +74,12 @@ export default function LoginModal({ isOpen, setIsOpen }) {
       <Modal.Header>Login</Modal.Header>
       <Modal.Content>
         <Modal.Description>
+          {loginMessage ? (
+            <Message negative>
+              <Message.Header>Error</Message.Header>
+              <p>{loginMessage}</p>
+            </Message>
+          ) : null}
           <Form>
             <Form.Input
               error={usernameError}

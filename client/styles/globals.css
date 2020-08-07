@@ -54,3 +54,7 @@ a {
   padding: 20px 50px;
   height: 90px;
 }
+
+.small-text {
+  font-size: 0.85rem;
+}

@@ -5,6 +5,7 @@ import Head from "next/head";
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
 import LoginModal from "../components/LoginModal";
+import GlobalMessage from "../components/GlobalMessage";
 import { Container } from "semantic-ui-react";
 import "../styles/globals.css";
 import "semantic-ui-css/semantic.min.css";
@@ -13,19 +14,20 @@ function MyApp ({ Component, pageProps }) {
   const [pageTitle, setPageTitle] = useState("");
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [activePage, setActivePage] = useState("home");
+  const [globalMessage, setGlobalMessage] = useState(null)
 
   const router = useRouter();
 
   useEffect(() => {
     let currentPath = router.route;
     currentPath = currentPath.split("/")[1];
-    console.log(currentPath);
     setActivePage(currentPath);
   });
 
   pageProps.setPageTitle = setPageTitle;
+  pageProps.setGlobalMessage = setGlobalMessage;
   return (
-    <AuthProvider>
+    <AuthProvider setGlobalMessage={setGlobalMessage}>
       <Head>
         <title>Keycloak POC {pageTitle !== "" ? `- ${pageTitle}` : ""}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -36,6 +38,7 @@ function MyApp ({ Component, pageProps }) {
           activePage={activePage}
         />
         <Container text className="content">
+          <GlobalMessage message={globalMessage} setMessage={setGlobalMessage} />
           <Component {...pageProps} />
         </Container>
         <LoginModal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} />

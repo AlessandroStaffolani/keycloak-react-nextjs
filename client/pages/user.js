@@ -3,8 +3,10 @@ import { Header, Segment, Divider } from "semantic-ui-react";
 import PageAction from "../components/PageAction";
 import { ProtectedRoute } from "../lib/auth";
 
-function User({}) {
-
+function User({setPageTitle}) {
+  useEffect(() => {
+    setPageTitle('User')
+  }, [])
   return (
     <div>
       <Header as="h1">User page</Header>
@@ -37,4 +39,4 @@ function User({}) {
   );
 }
 
-export default ProtectedRoute(User)
+export default ProtectedRoute(User, 'user')

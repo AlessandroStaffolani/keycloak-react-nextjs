@@ -14,4 +14,11 @@ const api = Axios.create({
   }
 });
 
+export const addBearerToken = (token) => {
+  api.defaults.headers.Authorization = `Bearer ${token}`
+}
+export const removeBearerToken = () => {
+  delete api.defaults.headers.Authorization;
+}
+
 export default api;

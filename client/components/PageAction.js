@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Message } from "semantic-ui-react";
-import axios from "axios";
+import api from "../lib/api";
 
 export default function PageAction({ resource, action }) {
   const [show, setShow] = useState(false);
@@ -11,7 +11,7 @@ export default function PageAction({ resource, action }) {
 
   const handleClick = async () => {
     try {
-      const response = await axios.get(`/api/${resource}/${action}`);
+      const response = await api.get(`/${resource}/${action}`);
       if (response.status === 200) {
         setTitle(response.data.title);
         setMessage(response.data.message);

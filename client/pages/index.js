@@ -26,9 +26,7 @@ export default function Home({setPageTitle}) {
       <List bulleted>
         <List.Item>
           <List.Header>
-            <Link href="/public">
-              <a>Public</a>
-            </Link>
+            Public
           </List.Header>
           <List.Description>
             This page has no restrictions, everybody can visit it without any
@@ -37,9 +35,7 @@ export default function Home({setPageTitle}) {
         </List.Item>
         <List.Item>
           <List.Header>
-            <Link href="/user">
-              <a>User</a>
-            </Link>
+            User
           </List.Header>
           <List.Description>
             This page has the basic level of restriction, only regular user,
@@ -48,9 +44,7 @@ export default function Home({setPageTitle}) {
         </List.Item>
         <List.Item>
           <List.Header>
-            <Link href="/admin">
-              <a>Admin</a>
-            </Link>
+            Admin
           </List.Header>
           <List.Description>
             This page has the highest level of restriction, only admin user,
@@ -59,6 +53,10 @@ export default function Home({setPageTitle}) {
           </List.Description>
         </List.Item>
       </List>
+      <hr />
+      <p className='small-text'>
+        Try to log in in order to use the User and Admin pages.
+      </p>
     </div>
   );
 }
