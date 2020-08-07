@@ -37,7 +37,7 @@ export default function Home({setPageTitle}) {
         </List.Item>
         <List.Item>
           <List.Header>
-            <Link href="/public">
+            <Link href="/user">
               <a>User</a>
             </Link>
           </List.Header>
@@ -48,7 +48,7 @@ export default function Home({setPageTitle}) {
         </List.Item>
         <List.Item>
           <List.Header>
-            <Link href="/public">
+            <Link href="/admin">
               <a>Admin</a>
             </Link>
           </List.Header>

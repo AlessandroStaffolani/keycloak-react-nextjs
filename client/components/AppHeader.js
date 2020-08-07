@@ -8,7 +8,7 @@ function AppHeader({ setIsLoginModalOpen, activePage }) {
   return (
     <nav className="header">
       <Menu stackable className="navbar">
-        <Menu.Item name="home" link fitted="vertically">
+        <Menu.Item style={{ cursor: "pointer "}} name="home" link fitted="vertically">
           <Link href="/">
             <a>
               <img className="logo" alt="Logo" src="/keycloak.png" />
@@ -16,29 +16,29 @@ function AppHeader({ setIsLoginModalOpen, activePage }) {
           </Link>
         </Menu.Item>
         <Menu.Menu className="navigation">
-          <Menu.Item name="home" active={activePage === ""}>
+          <Menu.Item style={{ cursor: "pointer "}} name="home" active={activePage === ""}>
             <Link href="/">
               <h4>Home</h4>
             </Link>
           </Menu.Item>
-          <Menu.Item name="public" active={activePage === "public"}>
+          <Menu.Item style={{ cursor: "pointer "}} name="public" active={activePage === "public"}>
             <Link href="/public">
               <h4>Public</h4>
             </Link>
           </Menu.Item>
-          <Menu.Item name="user" active={activePage === "user"}>
+          <Menu.Item style={{ cursor: "pointer "}} name="user" active={activePage === "user"}>
             <Link href="/user">
               <h4>User</h4>
             </Link>
           </Menu.Item>
-          <Menu.Item name="admin" active={activePage === "admin"}>
+          <Menu.Item style={{ cursor: "pointer "}} name="admin" active={activePage === "admin"}>
             <Link href="/admin">
               <h4>Admin</h4>
             </Link>
           </Menu.Item>
         </Menu.Menu>
         <Menu.Menu position="right">
-          <Menu.Item onClick={() => setIsLoginModalOpen(true)}>
+          <Menu.Item style={{ cursor: "pointer "}} onClick={() => setIsLoginModalOpen(true)}>
             <Header as="h4">Login</Header>
           </Menu.Item>
         </Menu.Menu>

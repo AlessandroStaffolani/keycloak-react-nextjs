@@ -4,7 +4,7 @@
   "ssl-required": "external",
   "resource": "poc-client",
   "credentials": {
-    "secret": "526b3a6b-f528-4c45-a3b8-964dda114bcb"
+    "secret": "b353cb86-6fa9-4653-b093-a756b8f9d1bc"
   },
   "confidential-port": 0
 }

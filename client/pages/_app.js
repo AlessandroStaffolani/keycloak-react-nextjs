@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { AuthProvider } from "../lib/auth";
 import Head from "next/head";
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
@@ -8,10 +9,11 @@ import { Container } from "semantic-ui-react";
 import "../styles/globals.css";
 import "semantic-ui-css/semantic.min.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp ({ Component, pageProps }) {
   const [pageTitle, setPageTitle] = useState("");
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [activePage, setActivePage] = useState("home");
+
   const router = useRouter();
 
   useEffect(() => {
@@ -23,7 +25,7 @@ function MyApp({ Component, pageProps }) {
 
   pageProps.setPageTitle = setPageTitle;
   return (
-    <div>
+    <AuthProvider>
       <Head>
         <title>Keycloak POC {pageTitle !== "" ? `- ${pageTitle}` : ""}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -39,7 +41,7 @@ function MyApp({ Component, pageProps }) {
         <LoginModal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} />
         <AppFooter />
       </div>
-    </div>
+    </AuthProvider>
   );
 }
 

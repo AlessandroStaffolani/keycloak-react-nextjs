@@ -1,11 +1,9 @@
 import {useEffect} from 'react'
 import { Header, Segment, Divider } from "semantic-ui-react";
 import PageAction from "../components/PageAction";
+import { ProtectedRoute } from "../lib/auth";
 
-export default function Admin({setPageTitle}) {
-  useEffect(() => {
-    setPageTitle('Admin')
-  }, [])
+function Admin({}) {
   return (
     <div>
       <Header as="h1">Admin page</Header>
@@ -37,3 +35,5 @@ export default function Admin({setPageTitle}) {
     </div>
   );
 }
+
+export default ProtectedRoute(Admin)
