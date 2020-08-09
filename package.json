@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "node server/server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server/server.js"
+    "build": "next build client",
+    "start": "NODE_ENV=production node server/server.js -p PORT"
   },
   "dependencies": {
     "axios": "^0.19.2",

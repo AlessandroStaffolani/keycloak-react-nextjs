@@ -18,7 +18,7 @@ export const AuthProvider = ({ children, setGlobalMessage }) => {
         console.log("Got a token in the cookies, let's see if it is valid");
         addBearerToken(token)
         try {
-          const {data: user} = await api.get("system/users/me");
+          const {data: user} = await api.get("/api/system/users/me");
           if (user) {
             setUser(user);
           }
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children, setGlobalMessage }) => {
 
   const login = async (username, password) => {
     try {
-      const {data: access_token} = await api.post("auth/login", {
+      const {data: access_token} = await api.post("/api/auth/login", {
         username,
         password,
       });
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children, setGlobalMessage }) => {
         console.log("Got token");
         Cookies.set("token", token, {expires: 6});
         addBearerToken(token)
-        const {data: user} = await api.get("system/users/me");
+        const {data: user} = await api.get("/api/system/users/me");
         setUser(user);
         setGlobalMessage({
           positive: true,
@@ -78,8 +78,12 @@ export const AuthProvider = ({ children, setGlobalMessage }) => {
 
   const hasRole = async (role) => {
     try {
-      const { data: response } = await api.get(`system/users/has/realmrole/${role}`)
-      return response.hasRole
+      const { data: response } = await api.get(`/api/system/users/has/realmrole/${role}`)
+      if (response.status === 200) {
+        return response.hasRole
+      } else {
+        return false
+      }
     } catch (err) {
       return false
     }

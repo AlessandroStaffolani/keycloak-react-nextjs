@@ -1,12 +1,11 @@
-import {useEffect} from 'react'
+import { useEffect } from "react";
 import { Header, List } from "semantic-ui-react";
 import Link from "next/link";
 
-export default function Home({setPageTitle}) {
-
+export default function Home({ setPageTitle }) {
   useEffect(() => {
-    setPageTitle('Home')
-  }, [])
+    setPageTitle("Home");
+  }, []);
 
   return (
     <div>
@@ -25,27 +24,21 @@ export default function Home({setPageTitle}) {
       </p>
       <List bulleted>
         <List.Item>
-          <List.Header>
-            Public
-          </List.Header>
+          <List.Header>Public</List.Header>
           <List.Description>
             This page has no restrictions, everybody can visit it without any
             authorization.
           </List.Description>
         </List.Item>
         <List.Item>
-          <List.Header>
-            User
-          </List.Header>
+          <List.Header>User</List.Header>
           <List.Description>
             This page has the basic level of restriction, only regular user,
             which are logged into the application, can visit this page.
           </List.Description>
         </List.Item>
         <List.Item>
-          <List.Header>
-            Admin
-          </List.Header>
+          <List.Header>Admin</List.Header>
           <List.Description>
             This page has the highest level of restriction, only admin user,
             which are logged into the application with full permission, can
@@ -54,8 +47,10 @@ export default function Home({setPageTitle}) {
         </List.Item>
       </List>
       <hr />
-      <p className='small-text'>
-        Try to log in in order to use the User and Admin pages.
+      <p className="small-text">
+        Try to log in in order to use the User and Admin pages. Testing users
+        are: <i>alice</i> (role user) and <i>test-admin</i> (role user+admin)
+        both with password <i>password</i>.
       </p>
     </div>
   );

@@ -11,7 +11,7 @@ export default function PageAction({ resource, action }) {
 
   const handleClick = async () => {
     try {
-      const response = await api.get(`/${resource}/${action}`);
+      const response = await api.get(`/api/${resource}/${action}`);
       if (response.status === 200) {
         setTitle(response.data.title);
         setMessage(response.data.message);

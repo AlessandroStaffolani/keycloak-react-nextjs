@@ -7,10 +7,10 @@ export default function LoginModal({ isOpen, setIsOpen }) {
   const [password, setPassword] = useState("");
   const [passwordFieldType, setPasswordFieldType] = useState("password");
   const [passwordFieldIcon, setPasswordFieldIcon] = useState("eye");
-  const [usernameError, setUsernameError] = useState(null)
-  const [passwordError, setPasswordError] = useState(null)
-  const [loginMessage, setLoginMessage] = useState(null)
-  const {login} = useAuth();
+  const [usernameError, setUsernameError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+  const [loginMessage, setLoginMessage] = useState(null);
+  const { login } = useAuth();
 
   const handlePasswordFieldTypeChange = () => {
     const type = passwordFieldType === "password" ? "text" : "password";
@@ -20,48 +20,54 @@ export default function LoginModal({ isOpen, setIsOpen }) {
   };
 
   const handleLoginClick = async () => {
-    let isValid = true
-    if (username === '') {
-      isValid = false
-      setUsernameError({content: 'Please provide a username', pointing: 'below'})
+    let isValid = true;
+    if (username === "") {
+      isValid = false;
+      setUsernameError({
+        content: "Please provide a username",
+        pointing: "below",
+      });
     }
-    if (password === '') {
-      isValid = false
-      setPasswordError({content: 'Please provide a password', pointing: 'below'})
+    if (password === "") {
+      isValid = false;
+      setPasswordError({
+        content: "Please provide a password",
+        pointing: "below",
+      });
     }
     if (isValid) {
       // call the login method
-      const response = await login(username, password)
+      const response = await login(username, password);
       if (response.result) {
-        setIsOpen(false)
-        handleOnClose()
+        setIsOpen(false);
+        handleOnClose();
       } else {
-        setLoginMessage('Invalid credentials')
+        setLoginMessage("Invalid credentials");
       }
     }
-  }
+  };
 
   const handleOnChange = (e, field) => {
-    const value = e.target.value
-    if (field === 'username') {
-      setUsername(value)
-      setUsernameError(null)
-    } else if (field === 'password') {
-      setPassword(value)
-      setPasswordError(null)
+    const value = e.target.value;
+    if (field === "username") {
+      setUsername(value);
+      setUsernameError(null);
+    } else if (field === "password") {
+      setPassword(value);
+      setPasswordError(null);
     }
-  }
+  };
 
   const handleOnClose = () => {
-    setUsername('')
-    setPassword('')
-    setPasswordFieldIcon('eye')
-    setPasswordFieldType('password')
-    setUsernameError(null)
-    setPasswordError(null)
-    setIsOpen(false)
-    setLoginMessage(null)
-  }
+    setUsername("");
+    setPassword("");
+    setPasswordFieldIcon("eye");
+    setPasswordFieldType("password");
+    setUsernameError(null);
+    setPasswordError(null);
+    setIsOpen(false);
+    setLoginMessage(null);
+  };
 
   return (
     <Modal
