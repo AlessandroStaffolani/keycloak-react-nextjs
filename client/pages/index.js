@@ -1,11 +1,14 @@
-import Layout from "../components/Layout";
+import { useEffect } from "react";
 import { Header, List } from "semantic-ui-react";
 import Link from "next/link";
 
-export default function Home() {
-  const title = "Home";
+export default function Home({ setPageTitle }) {
+  useEffect(() => {
+    setPageTitle("Home");
+  }, []);
+
   return (
-    <Layout title={title}>
+    <div>
       <Header as="h1">Home page</Header>
       <p>
         Sample web application which shows how to manage different levels of
@@ -21,33 +24,21 @@ export default function Home() {
       </p>
       <List bulleted>
         <List.Item>
-          <List.Header>
-            <Link href="/public">
-              <a>Public</a>
-            </Link>
-          </List.Header>
+          <List.Header>Public</List.Header>
           <List.Description>
             This page has no restrictions, everybody can visit it without any
             authorization.
           </List.Description>
         </List.Item>
         <List.Item>
-          <List.Header>
-            <Link href="/public">
-              <a>User</a>
-            </Link>
-          </List.Header>
+          <List.Header>User</List.Header>
           <List.Description>
             This page has the basic level of restriction, only regular user,
             which are logged into the application, can visit this page.
           </List.Description>
         </List.Item>
         <List.Item>
-          <List.Header>
-            <Link href="/public">
-              <a>Admin</a>
-            </Link>
-          </List.Header>
+          <List.Header>Admin</List.Header>
           <List.Description>
             This page has the highest level of restriction, only admin user,
             which are logged into the application with full permission, can
@@ -55,6 +46,12 @@ export default function Home() {
           </List.Description>
         </List.Item>
       </List>
-    </Layout>
+      <hr />
+      <p className="small-text">
+        Try to log in in order to use the User and Admin pages. Testing users
+        are: <i>alice</i> (role user) and <i>test-admin</i> (role user+admin)
+        both with password <i>password</i>.
+      </p>
+    </div>
   );
 }

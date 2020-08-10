@@ -5,14 +5,12 @@ FROM node:12-alpine
 WORKDIR /usr/src/app
 
 # install and cache app dependencies
-COPY client ./
+COPY . .
 
 RUN npm install
 
-EXPOSE 3000
+RUN npm run build
 
-COPY run.sh /usr/src/app/run.sh
-RUN chmod +x /usr/src/app/run.sh
+EXPOSE 5000
 
-# start app
-CMD ["/usr/src/app/run.sh"]
+CMD npm run start

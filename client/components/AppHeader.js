@@ -1,23 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { Menu } from "semantic-ui-react";
+import React, {useEffect, useState} from "react";
+import useAuth from "../lib/auth";
 import Link from "next/link";
-import { Header } from "semantic-ui-react";
-import { useRouter } from "next/router";
+import { Menu, Header, Dropdown } from "semantic-ui-react";
 
-function AppHeader({ setIsLoginModalOpen }) {
-  const [activePage, setActivePage] = useState("home");
-  const router = useRouter();
+function AppHeader({ setIsLoginModalOpen, activePage }) {
+  const [showUser, setShowUser] = useState(false)
+  const [showAdmin, setShowAdmin] = useState(false)
+  const { isAuthenticated, logout, user, hasRole } = useAuth();
 
   useEffect(() => {
-    let currentPath = router.route;
-    currentPath = currentPath.split("/")[1];
-    setActivePage(currentPath);
-  }, []);
+    const checkRoles = async () => {
+      setShowUser(await hasRole('user'))
+      setShowAdmin(await hasRole('admin'))
+    }
+    checkRoles()
+  }, [isAuthenticated])
 
   return (
     <nav className="header">
       <Menu stackable className="navbar">
-        <Menu.Item name="home" link fitted="vertically">
+        <Menu.Item
+          style={{ cursor: "pointer " }}
+          name="home"
+          link
+          fitted="vertically"
+        >
           <Link href="/">
             <a>
               <img className="logo" alt="Logo" src="/keycloak.png" />
@@ -25,31 +32,64 @@ function AppHeader({ setIsLoginModalOpen }) {
           </Link>
         </Menu.Item>
         <Menu.Menu className="navigation">
-          <Menu.Item name="home" active={activePage === ""}>
+          <Menu.Item
+            style={{ cursor: "pointer " }}
+            name="home"
+            active={activePage === ""}
+          >
             <Link href="/">
-              <Header as="h4">Home</Header>
+              <h4>Home</h4>
             </Link>
           </Menu.Item>
-          <Menu.Item name="public" active={activePage === "public"}>
+          <Menu.Item
+            style={{ cursor: "pointer " }}
+            name="public"
+            active={activePage === "public"}
+          >
             <Link href="/public">
-              <Header as="h4">Public</Header>
+              <h4>Public</h4>
             </Link>
           </Menu.Item>
-          <Menu.Item name="user" active={activePage === "user"}>
-            <Link href="/user">
-              <Header as="h4">User</Header>
-            </Link>
-          </Menu.Item>
-          <Menu.Item name="admin" active={activePage === "admin"}>
-            <Link href="/admin">
-              <Header as="h4">Admin</Header>
-            </Link>
-          </Menu.Item>
+          {isAuthenticated && showUser ? (
+            <Menu.Item
+              style={{ cursor: "pointer " }}
+              name="user"
+              active={activePage === "user"}
+            >
+              <Link href="/user">
+                <h4>User</h4>
+              </Link>
+            </Menu.Item>
+          ) : null}
+          {isAuthenticated && showAdmin ? (
+            <Menu.Item
+              style={{ cursor: "pointer " }}
+              name="admin"
+              active={activePage === "admin"}
+            >
+              <Link href="/admin">
+                <h4>Admin</h4>
+              </Link>
+            </Menu.Item>
+          ) : null}
         </Menu.Menu>
         <Menu.Menu position="right">
-          <Menu.Item onClick={() => setIsLoginModalOpen(true)}>
-            <Header as="h4">Login</Header>
-          </Menu.Item>
+          {isAuthenticated && user ? (
+            <Dropdown item direction="left" as="h4" text={user.preferred_username}>
+              <Dropdown.Menu>
+                <Dropdown.Item disabled icon="mail" text={user.email} />
+                <Dropdown.Item disabled icon="user" text={`${user.given_name} ${user.family_name}`} />
+                <Dropdown.Item icon="log out" text="Logout" onClick={() => logout()} />
+              </Dropdown.Menu>
+            </Dropdown>
+          ) : (
+            <Menu.Item
+              style={{ cursor: "pointer " }}
+              onClick={() => setIsLoginModalOpen(true)}
+            >
+              <Header as="h4">Login</Header>
+            </Menu.Item>
+          )}
         </Menu.Menu>
       </Menu>
     </nav>
