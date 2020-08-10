@@ -26,7 +26,7 @@ In order to install the application it is necessary to:
 - rename the file ``client/.env.local.sample`` into ``client/.env.local``
 
 ```shell script
-git clone <url_repo>
+git clone https://github.com/ale8193/keycloak-react-nextjs.git
 ```
 
 - run the docker-compose file, which deploys Keycloak, MySQL (used by Keycloak) and the web application (both client and server)
