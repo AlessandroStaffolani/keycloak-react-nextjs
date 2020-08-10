@@ -4,15 +4,8 @@ const http = require("http");
 const next = require("next");
 const session = require("express-session");
 const bodyParser = require("body-parser");
-const Keycloak = require("keycloak-connect");
+const initKeycloakAdapter = require('./lib/keycloakApi');
 const cors = require("cors");
-const { verifyToken } = require('./lib/authUtils')
-
-const authApi = require("./api/auth");
-const systemApi = require("./api/system");
-const publicApi = require("./api/public");
-const userApi = require("./api/user");
-const adminApi = require("./api/admin");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({
@@ -22,9 +15,17 @@ const app = next({
 const handle = app.getRequestHandler();
 
 const memoryStore = new session.MemoryStore();
-const keycloak = new Keycloak({
+const keycloak = initKeycloakAdapter({
   store: memoryStore,
 });
+
+const { verifyToken } = require('./lib/authUtils')
+
+const authApi = require("./api/auth");
+const systemApi = require("./api/system");
+const publicApi = require("./api/public");
+const userApi = require("./api/user");
+const adminApi = require("./api/admin");
 
 app.prepare().then(() => {
   const server = express();

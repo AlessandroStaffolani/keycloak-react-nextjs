@@ -1,10 +1,12 @@
 const express = require("express");
-const keycloak = require("../lib/keycloakApi");
+const initKeycloakAdapter = require("../lib/keycloakApi");
 const {
   send500Response,
   send401Response,
   send400Response,
 } = require("../lib/responseUtils");
+
+const keycloak = initKeycloakAdapter()
 
 const router = express.Router();
 

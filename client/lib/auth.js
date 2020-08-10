@@ -67,13 +67,13 @@ export const AuthProvider = ({ children, setGlobalMessage }) => {
   const logout = () => {
     Cookies.remove("token");
     removeBearerToken()
+    router.push("/");
     setUser(null);
     setGlobalMessage({
       info: true,
       header: 'Your are successfully logged out!',
       content: `You are no more logged in.`
     })
-    router.push("/");
   };
 
   const hasRole = async (role) => {

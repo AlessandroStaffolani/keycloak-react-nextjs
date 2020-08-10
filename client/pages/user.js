@@ -32,7 +32,7 @@ function User({ setPageTitle, setGlobalMessage }) {
       {pageLoading && !error ? (
         <LoadingPlaceholder lines={5} blocks={2} />
       ) : (
-        <PageContent actions={data.actions} />
+        <PageContent actions={data ? data.actions : []} />
       )}
     </div>
   );

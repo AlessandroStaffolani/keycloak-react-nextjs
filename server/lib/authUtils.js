@@ -1,5 +1,7 @@
-const keycloak = require("./keycloakApi");
+const initKeycloakAdapter = require("./keycloakApi");
 const {send401Response, send403Response, send500Response} = require('./responseUtils')
+
+const keycloak = initKeycloakAdapter();
 
 function verifyToken(spec = undefined, noError=false) {
   return async function (req, res, next) {
